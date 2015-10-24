@@ -30,6 +30,23 @@ options(gvis.plot.tag="chart")
 
 ## Determine match and present results
 
+<b>The application accepts the following inputs from user:</b>  
+
+1. SAT Reading, Writing and Math scores  (Actual or projected scores for scenario analysis)
+2. Preferred percentile rank in the institution  (25, 50 or 70, defaults to 50)
+3. Number of closest matching institutions to show  
+
+<b>The application does the following:</b>  
+
+1. Calculates a score difference for each of the universities by summing up the absolute deviations from the input values  
+2. Filters the list by institutes with score difference <= 60  
+3. Orders the list by decreasing score difference and picks top n based on input  
+4. Shows the results in a tabular form  
+5. Shows the results in a map with both size and color gradient emphasizing match proximity  
+
+
+
+
 --- 
 
 ## How it works (the core code)
@@ -42,7 +59,7 @@ suppressWarnings(library(googleVis))
 ```{r results='asis'}
 source("resources.R") # Source code for needed R functions
 newData <- download_read_and_cleanse_scorecard_file()
-satWrite <- 670; satRead <- 650; satMath <- 700; preferredPctRank <- 50; topn <- 20
+satWrite <- 670; satRead <- 650; satMath <- 700; preferredPctRank <- 50; topn <- 10
 ret <- getUnivMatches(satWrite, satMath, satRead, preferredPctRank, topn)
 mychart <- ret("chartonly")
 plot(ret("dataonly"))

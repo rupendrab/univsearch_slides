@@ -27,6 +27,23 @@ With this information it is possible determine the closeness of a college to a s
 
 ## Determine match and present results
 
+<b>The application accepts the following inputs from user:</b>  
+
+1. SAT Reading, Writing and Math scores  (Actual or projected scores for scenario analysis)
+2. Preferred percentile rank in the institution  (25, 50 or 70, defaults to 50)
+3. Number of closest matching institutions to show  
+
+<b>The application does the following:</b>  
+
+1. Calculates a score difference for each of the universities by summing up the absolute deviations from the input values  
+2. Filters the list by institutes with score difference <= 60  
+3. Orders the list by decreasing score difference and picks top n based on input  
+4. Shows the results in a tabular form  
+5. Shows the results in a map with both size and color gradient emphasizing match proximity  
+
+
+
+
 --- 
 
 ## How it works (the core code)
@@ -37,21 +54,21 @@ With this information it is possible determine the closeness of a college to a s
 ```r
 source("resources.R") # Source code for needed R functions
 newData <- download_read_and_cleanse_scorecard_file()
-satWrite <- 670; satRead <- 650; satMath <- 700; preferredPctRank <- 50; topn <- 20
+satWrite <- 670; satRead <- 650; satMath <- 700; preferredPctRank <- 50; topn <- 10
 ret <- getUnivMatches(satWrite, satMath, satRead, preferredPctRank, topn)
 mychart <- ret("chartonly")
 plot(ret("dataonly"))
 ```
 
 <!-- Table generated in R 3.2.1 by googleVis 0.5.10 package -->
-<!-- Sat Oct 24 12:59:13 2015 -->
+<!-- Sat Oct 24 14:26:38 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataTableID77567fce340 () {
+function gvisDataTableID7751fbeb4bc () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -204,156 +221,6 @@ var datajson =
 740,
 35,
 65 
-],
-[
- "University of Virginia-Main Campus",
-"Charlottesville, VA",
-620,
-670,
-720,
-620,
-670,
-720,
-630,
-685,
-740,
-35,
-65 
-],
-[
- "University of Michigan-Ann Arbor",
-"Ann Arbor, MI",
-620,
-670,
-720,
-630,
-680,
-730,
-660,
-710,
-760,
-40,
-60 
-],
-[
- "Northeastern University",
-"Boston, MA",
-640,
-685,
-730,
-640,
-680,
-720,
-660,
-705,
-750,
-50,
-50 
-],
-[
- "New York University",
-"New York, NY",
-620,
-670,
-720,
-640,
-685,
-730,
-630,
-685,
-740,
-50,
-50 
-],
-[
- "University of Southern California",
-"Los Angeles, CA",
-620,
-670,
-720,
-640,
-695,
-750,
-660,
-710,
-760,
-55,
-45 
-],
-[
- "Colorado College",
-"Colorado Springs, CO",
-610,
-660,
-710,
-620,
-660,
-700,
-610,
-665,
-720,
-55,
-45 
-],
-[
- "University of Miami",
-"Coral Gables, FL",
-600,
-650,
-700,
-590,
-640,
-690,
-630,
-675,
-720,
-55,
-45 
-],
-[
- "Tulane University of Louisiana",
-"New Orleans, LA",
-620,
-660,
-700,
-630,
-675,
-720,
-620,
-660,
-700,
-55,
-45 
-],
-[
- "Hamilton College",
-"Clinton, NY",
-640,
-685,
-730,
-650,
-690,
-730,
-660,
-700,
-740,
-55,
-45 
-],
-[
- "Occidental College",
-"Los Angeles, CA",
-600,
-650,
-700,
-610,
-655,
-700,
-610,
-655,
-700,
-60,
-40 
 ] 
 ];
 data.addColumn('string','Institute');
@@ -374,8 +241,8 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartTableID77567fce340() {
-var data = gvisDataTableID77567fce340();
+function drawChartTableID7751fbeb4bc() {
+var data = gvisDataTableID7751fbeb4bc();
 var options = {};
 options["allowHtml"] = true;
 options["page"] = "enable";
@@ -383,7 +250,7 @@ options["height"] = "300";
 options["frozenColumns"] =      2;
 
     var chart = new google.visualization.Table(
-    document.getElementById('TableID77567fce340')
+    document.getElementById('TableID7751fbeb4bc')
     );
     chart.draw(data,options);
     
@@ -407,9 +274,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartTableID77567fce340);
+callbacks.push(drawChartTableID7751fbeb4bc);
 })();
-function displayChartTableID77567fce340() {
+function displayChartTableID7751fbeb4bc() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -433,11 +300,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID77567fce340"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID7751fbeb4bc"></script>
  
 <!-- divChart -->
   
-<div id="TableID77567fce340" 
+<div id="TableID7751fbeb4bc" 
   style="width: 100%; height: 300;">
 </div>
 
@@ -451,14 +318,14 @@ plot(mychart)
 ```
 
 <!-- GeoChart generated in R 3.2.1 by googleVis 0.5.10 package -->
-<!-- Sat Oct 24 12:57:10 2015 -->
+<!-- Sat Oct 24 14:26:38 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataGeoChartID775395cf99 () {
+function gvisDataGeoChartID77578919c93 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -511,56 +378,6 @@ var datajson =
  "Chestnut Hill, MA",
 "Boston College, Chestnut Hill, MA",
 65 
-],
-[
- "Charlottesville, VA",
-"University of Virginia-Main Campus, Charlottesville, VA",
-65 
-],
-[
- "Ann Arbor, MI",
-"University of Michigan-Ann Arbor, Ann Arbor, MI",
-60 
-],
-[
- "Boston, MA",
-"Northeastern University, Boston, MA",
-50 
-],
-[
- "New York, NY",
-"New York University, New York, NY",
-50 
-],
-[
- "Los Angeles, CA",
-"University of Southern California, Los Angeles, CA",
-45 
-],
-[
- "Colorado Springs, CO",
-"Colorado College, Colorado Springs, CO",
-45 
-],
-[
- "Coral Gables, FL",
-"University of Miami, Coral Gables, FL",
-45 
-],
-[
- "New Orleans, LA",
-"Tulane University of Louisiana, New Orleans, LA",
-45 
-],
-[
- "Clinton, NY",
-"Hamilton College, Clinton, NY",
-45 
-],
-[
- "Los Angeles, CA",
-"Occidental College, Los Angeles, CA",
-40 
 ] 
 ];
 data.addColumn('string','Location');
@@ -571,8 +388,8 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartGeoChartID775395cf99() {
-var data = gvisDataGeoChartID775395cf99();
+function drawChartGeoChartID77578919c93() {
+var data = gvisDataGeoChartID77578919c93();
 var options = {};
 options["width"] =    800;
 options["height"] =    350;
@@ -584,7 +401,7 @@ options["enableRegionInteractivity"] = true;
 options["colorAxis"] = {colors:['lightgreen', 'green', 'darkgreen']};
 
     var chart = new google.visualization.GeoChart(
-    document.getElementById('GeoChartID775395cf99')
+    document.getElementById('GeoChartID77578919c93')
     );
     chart.draw(data,options);
     
@@ -608,9 +425,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartGeoChartID775395cf99);
+callbacks.push(drawChartGeoChartID77578919c93);
 })();
-function displayChartGeoChartID775395cf99() {
+function displayChartGeoChartID77578919c93() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -634,11 +451,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartGeoChartID775395cf99"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartGeoChartID77578919c93"></script>
  
 <!-- divChart -->
   
-<div id="GeoChartID775395cf99" 
+<div id="GeoChartID77578919c93" 
   style="width: 800; height: 350;">
 </div>
 ### Please visit the website at [https://rupenb.shinyapps.io/univsearch](https://rupenb.shinyapps.io/univsearch)
