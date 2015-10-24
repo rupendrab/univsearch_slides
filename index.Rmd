@@ -17,14 +17,44 @@ US Department of Education publishes data for US Universities that reveals SAT s
 
 Given this information, students should be able to find out which Universities typically admit students with scores close to theirs. Since we only have data for three discrete percentiles per University for each of the three SAT scores (reading, writing and math), we can only match a student to Universities given their preference of one of those specific percentiles of admitted students they would like to belong to.
 
-So, the application needs the student to enter her SAT scores (for Reading, Writing and Math) and her preferred percentile rank (choice of 25, 50 or 75) by SAT scores in the institute where she would like to apply.
+So, an automated system would need the student to enter her SAT scores (for Reading, Writing and Math) and her preferred percentile rank (choice of 25, 50 or 75) by SAT scores in the institute where she would like to apply.
 
-With this information we can determine the closeness of a college to a student by simply summing up the absolute differences between her scores and the universities' published scores.
+With this information it is possible determine the closeness of a college to a student by simply summing up the absolute differences between her scores and the universities' published scores. This closeness score can be used to display a list of matching institutes.
+
+```{r setOptions, echo=FALSE}
+options(plot.gvis.tag="chart")
+options(gvis.plot.tag="chart")
+```
 
 --- .class #id 
 
 ## Determine match and present results
 
+--- 
 
+## How it works (the core code)
 
+```{r echo=FALSE}
+suppressWarnings(library(knitr))
+suppressWarnings(library(googleVis))
+```
+
+```{r results='asis'}
+source("resources.R") # Source code for needed R functions
+newData <- download_read_and_cleanse_scorecard_file()
+satWrite <- 670; satRead <- 650; satMath <- 700; preferredPctRank <- 50; topn <- 20
+ret <- getUnivMatches(satWrite, satMath, satRead, preferredPctRank, topn)
+mychart <- ret("chartonly")
+plot(ret("dataonly"))
+```
+
+--- 
+
+## And a Plot
+
+```{r results='asis'}
+plot(mychart)
+```
+### Please visit the website at [https://rupenb.shinyapps.io/univsearch](https://rupenb.shinyapps.io/univsearch)
+---
 
