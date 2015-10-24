@@ -1,6 +1,6 @@
 ---
 title       : Find Universities by SAT Score
-subtitle    : Using data publiched by College Scorecard
+subtitle    : Using data published by College Scorecard
 author      : Rupendra Bandyopadhyay
 job         : 
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
@@ -13,7 +13,7 @@ knit        : slidify::knit2slides
 
 ## Introduction
 
-US Department of Education publishes data for US Universities that reveals SAT scores for 25th, 50th and 75th percentile of admitted students by institute. This data is available at the [College Scorecard Website.](https://collegescorecard.ed.gov/data)
+US Department of Education publishes data for US Universities that presents SAT scores for 25th, 50th and 75th percentile of admitted students by institute. This data is available at the [College Scorecard Website.](https://collegescorecard.ed.gov/data)
 
 Given this information, students should be able to find out which Universities typically admit students with scores close to theirs. Since we only have data for three discrete percentiles per University for each of the three SAT scores (reading, writing and math), we can only match a student to Universities given their preference of one of those specific percentiles of admitted students they would like to belong to.
 
@@ -42,7 +42,7 @@ options(gvis.plot.tag="chart")
 2. Filters the list by institutes with score difference <= 60  
 3. Orders the list by decreasing score difference and picks top n based on input  
 4. Shows the results in a tabular form  
-5. Shows the results in a map with both size and color gradient emphasizing match proximity  
+5. Shows the results on a map with both size and color gradient emphasizing match proximity  
 
 
 
